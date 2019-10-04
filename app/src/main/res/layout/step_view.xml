@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="step"
+            type="com.example.recipesfornewbies.recipes.Step" />
+        <variable
+            name="viewModel"
+            type="com.example.recipesfornewbies.detailedrecipe.DetailedRecipeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="6dp"
+        android:paddingStart="6dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--            app:imageFromUrl="@{step}"-->
+
+        <TextView
+            android:id="@+id/step_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:printStepNumber="@{step.number}"
+            android:textStyle="bold"
+            app:flow_horizontalBias="0.1"/>
+
+        <TextView
+            android:id="@+id/step_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{step.step}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/step_number" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

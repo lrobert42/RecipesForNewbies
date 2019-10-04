@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/defaultRecipeListFragment">
+    <fragment
+        android:id="@+id/defaultRecipeListFragment"
+        android:name="com.example.recipesfornewbies.defaultrecipelist.DefaultRecipeListFragment"
+        android:label="DefaultRecipeListFragment"
+        tools:layout="@layout/fragment_default_recipe_list">
+        <action
+            android:id="@+id/action_defaultRecipeListFragment_to_detailedRecipeFragment"
+            app:destination="@+id/detailedRecipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_defaultRecipeListFragment_to_WishlistFragment2"
+            app:destination="@id/WishlistFragment" />
+        <action
+            android:id="@+id/action_defaultRecipeListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_defaultRecipeListFragment_to_AboutFragment"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_defaultRecipeListFragment_to_whatsInMyFridgeFragment"
+            app:destination="@id/whatsInMyFridgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedRecipeFragment"
+        android:name="com.example.recipesfornewbies.detailedrecipe.DetailedRecipeFragment"
+        android:label="DetailedRecipeFragment"
+        tools:layout="@layout/fragment_detailed_recipe">
+        <argument android:name="recipe"
+            app:argType="com.example.recipesfornewbies.recipes.Recipe" />
+        <action
+            android:id="@+id/action_detailedRecipeFragment_self"
+            app:destination="@id/detailedRecipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/defaultRecipeListFragment" />
+        <action
+            android:id="@+id/action_detailedRecipeFragment_self2"
+            app:destination="@id/detailedRecipeFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/whatsInMyFridgeFragment"
+        android:name="com.example.recipesfornewbies.whatsinmyfridge.WhatsInMyFridgeFragment"
+        android:label="WhatsInMyFridgeFragment"
+        tools:layout="@layout/fragment_whats_in_my_fridge">
+        <action
+            android:id="@+id/action_whatsInMyFridgeFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/AboutFragment"
+        android:name="com.example.recipesfornewbies.UtilsFragment.AboutFragment"
+        android:label="aboutFragment"
+        tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.recipesfornewbies.UtilsFragment.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.recipesfornewbies.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <argument android:name="ingredients"
+            app:argType="com.example.recipesfornewbies.ingredientsDatabase.Ingredients[]" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailedRecipeFragment"
+            app:destination="@id/detailedRecipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/WishlistFragment"
+        android:name="com.example.recipesfornewbies.wishlistview.WishlistFragment"
+        android:label="WishlistFragment"
+        tools:layout="@layout/fragment_wishlist">
+        <action
+            android:id="@+id/action_WishlistFragment_to_detailedRecipeFragment"
+            app:destination="@id/detailedRecipeFragment" />
+    </fragment>
+</navigation>

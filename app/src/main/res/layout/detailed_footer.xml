@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name = "viewModel"
+            type="com.example.recipesfornewbies.detailedrecipe.DetailedRecipeViewModel"/>
+        <variable
+            name="similarRecipes"
+            type="com.example.recipesfornewbies.recipes.Recipe"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:onClick="@{() ->viewModel.onSimilarRecipeClicked(similarRecipes)}"
+
+            >
+
+            <ImageView
+                android:id="@+id/similar_image"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                app:imageFromUrl="@{similarRecipes.image}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/similar_text"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="clip_vertical|center_horizontal|center_vertical"
+                android:text="@{similarRecipes.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/similar_image"
+                tools:text="Homemade lasagna"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.recipesfornewbies.detailedrecipe.DetailedRecipeViewModel"/>
+    </data>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detailed_recipe_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_servings"
+        app:instructionList="@{viewModel.instructions}"
+        app:recipe="@{viewModel.recipe}"
+        app:similarRecipes="@{viewModel.similarRecipes}"/>
+
+</layout>

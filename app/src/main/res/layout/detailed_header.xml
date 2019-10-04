@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name = "viewModel"
+            type="com.example.recipesfornewbies.detailedrecipe.DetailedRecipeViewModel"/>
+        <variable
+            name="recipe"
+            type="com.example.recipesfornewbies.recipes.Recipe" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/detailed_recipe_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:imageFromUrl="@{recipe.image}"
+            app:layout_constraintBottom_toTopOf="@+id/detailed_recipe_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailed_recipe_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{recipe.title}"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailed_recipe_image" />
+
+        <ImageView
+            android:id="@+id/image_time"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:paddingTop="0dp"
+            android:src="@drawable/ic_time_24px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailed_recipe_title" />
+
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:paddingTop="12dp"
+            app:flow_verticalAlign="baseline"
+            app:layout_constraintBottom_toBottomOf="@+id/image_time"
+            app:layout_constraintStart_toEndOf="@id/image_time"
+            app:layout_constraintTop_toTopOf="@+id/image_time"
+            app:readyInMinutes="@{recipe.readyInMinutes}"
+            tools:text="Ready in 45 minutes" />
+
+        <ImageView
+            android:id="@+id/image_servings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_servings_24px"
+            app:layout_constraintEnd_toStartOf="@+id/text_servings"
+            app:layout_constraintTop_toBottomOf="@+id/detailed_recipe_title" />
+
+        <TextView
+            android:id="@+id/text_servings"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:paddingTop="10dp"
+            app:flow_verticalAlign="baseline"
+            app:layout_constraintBottom_toBottomOf="@+id/image_servings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_servings"
+            app:servings="@{recipe.servings}"
+            tools:text="For 4 servings" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
