@@ -28,7 +28,6 @@ class WishlistFragment: Fragment() {
     ): View? {
 
         val application = requireNotNull(this.activity).application
-        Log.i("Fragment", "Context in WishList: $application")
         val dataSource = WishlistDatabase.getInstance(application).wishlistDatabaseDAO
 
         val viewModelFactory = WishlistViewModelFactory(dataSource)
@@ -50,7 +49,7 @@ class WishlistFragment: Fragment() {
 
 
         viewModel.wishlist.observe(this, Observer {
-            Log.i("Fragment", "RecipeList update: $it")
+            Log.i("Frgament", "$it")
             adapter.submitList(it)
         })
 
@@ -82,7 +81,6 @@ class WishlistFragment: Fragment() {
                 }
             })
         )
-
         return binding.root
     }
 }

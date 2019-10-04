@@ -21,12 +21,11 @@ class WishlistViewModel(datasource: WishlistDatabaseDAO) : ViewModel(){
     get() = _wishlist
 
     init {
-        Log.i("VM", "Datasource wishlist: $database")
         getWishListRecipe()
     }
 
     fun remove(position: Int){
-        coroutineScope.launch(){
+        coroutineScope.launch {
             _wishlist.value!![position]?.let {
                 withContext(Dispatchers.IO){
                     database.clearRecipe(it.id)
@@ -50,7 +49,6 @@ class WishlistViewModel(datasource: WishlistDatabaseDAO) : ViewModel(){
                             )
                         }
                     }
-                    Log.i("VM", "recipeList from database: $recipeList")
                     recipeList
                 }
                 catch (e: Exception)

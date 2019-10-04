@@ -59,7 +59,7 @@ class DefaultRecipeListFragment: Fragment(){
 
 
 
-        binding.recyclerRecipeList.adapter = RandomRecipeListAdapter(viewModel)
+        binding.recyclerRecipeList.adapter = RandomRecipeListAdapter()
 
         val pullToRefresh = binding.pullToRefresh
 
@@ -137,5 +137,6 @@ class DefaultRecipeListFragment: Fragment(){
         return NavigationUI.onNavDestinationSelected(item!!,
             this.findNavController()) || super.onOptionsItemSelected(item)
     }
+
 
 }

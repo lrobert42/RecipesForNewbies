@@ -12,15 +12,13 @@ import com.example.recipesfornewbies.recipes.Recipe
 
  /*******************************RANDOM RECIPES*******************************************/
 
-class RandomRecipeListAdapter(vm: DefaultRecipeListViewModel): ListAdapter<Recipe, RandomRecipeListAdapter.RandomRecipeViewHolder>(DiffCallback) {
+class RandomRecipeListAdapter: ListAdapter<Recipe, RandomRecipeListAdapter.RandomRecipeViewHolder>(DiffCallback) {
 
 
-     val viewModel = vm
     class RandomRecipeViewHolder(private var binding: RecipeCardViewBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(recipe: Recipe, viewModel: DefaultRecipeListViewModel) {
-//            binding.viewModel = viewModel
+        fun bind(recipe: Recipe) {
             binding.recipe = recipe
             // Forces the data binding to execute immediately,to correctly size RecyclerVieW
             binding.executePendingBindings()
@@ -34,8 +32,6 @@ class RandomRecipeListAdapter(vm: DefaultRecipeListViewModel): ListAdapter<Recip
             }
         }
     }
-
-
 
     //Allows RecyclerView to see items that have changed
     companion object DiffCallback : DiffUtil.ItemCallback<Recipe>() {
@@ -59,10 +55,7 @@ class RandomRecipeListAdapter(vm: DefaultRecipeListViewModel): ListAdapter<Recip
 
     override fun onBindViewHolder(holder: RandomRecipeViewHolder, position: Int) {
         val recipe = getItem(position)
-        holder.bind(recipe, viewModel)
+        holder.bind(recipe)
     }
 
-     override fun getItemCount(): Int {
-         return super.getItemCount()
-     }
 }

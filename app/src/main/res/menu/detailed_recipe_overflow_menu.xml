@@ -3,8 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/app_bar_switch"
-        android:icon="@drawable/ic_add_24px"
-        android:title="Switch"
-        app:actionLayout="@layout/switch_item" />
+        android:id="@+id/favorite_false"
+        android:icon="@drawable/ic_favorite_empty_24px"
+        android:title="@string/add_to_favorite"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/favorite_true"
+        android:icon="@drawable/ic_favorite_full_24px"
+        android:title="@string/remove_from_favorite"
+        app:showAsAction="ifRoom"/>
 </menu>

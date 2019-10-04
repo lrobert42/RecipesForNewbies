@@ -29,21 +29,8 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        Log.i("VM", "Datasource: $database")
-      //  _randomRecipeList.value = emptyList()
         getRandomRecipes()
     }
-
-//    fun getRecipesForNewbie() {
-//        coroutineScope.launch {
-//            var getRecipes = service.getRecipe().await()
-//            try {
-//                _recipeList.value = getRecipes.results
-//            } catch (e: Exception) {
-//                Log.i("ViewModel","Error: $e")
-//            }
-//        }
-//    }
 
     fun updateRecipeList(){
         getRandomRecipes()
@@ -54,15 +41,12 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
 
     private fun cleanRandomRecipes(dirtyRecipeList : List<Recipe>){
 
-        Log.i("VM", "Je passe dans clean")
-        Log.i("VM", "cleanList: $cleanRecipeList")
-
         cleanRecipeList.addAll(dirtyRecipeList.filter{
             Log.i("VM", "image: ${it.image}")
              it.image != null && it.image.isNotEmpty()
             })
 
-        if(cleanRecipeList.size >= 3){
+        if(cleanRecipeList.size >= 5){
             _randomRecipeList.value = cleanRecipeList
         } else
         {
@@ -99,25 +83,14 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
     fun onSwipeWishList(position: Int){
         coroutineScope.launch{
             val recipe = _randomRecipeList.value!![position]
-            if (!recipeIsInWishlist(recipe)){
-                Log.i("VM", "Je vais insert")
+            if (!isRecipeInWishlist(recipe)){
                 insertRecipeInWishlist(recipe)
             }
             _showToast.value = true
         }
     }
 
-    private suspend fun debugsarace(){
-        withContext(Dispatchers.IO)
-        {
-            val coucou = database.getAllRecipe()
-            Log.i("VM", "coucou: $coucou")
-
-        }
-    }
-
     private suspend fun insertRecipeInWishlist(recipe: Recipe){
-
         withContext(Dispatchers.IO){
             val newWishlistRecipe =
                 WishlistRecipe(_id = recipe.id,
@@ -126,12 +99,11 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
                     recipe_servings = recipe.servings,
                     recipe_title = recipe.title?: ""
                 )
-            Log.i("VM", "Voici la nouvelle recette en wishList: $newWishlistRecipe")
             database.insert(newWishlistRecipe)
         }
     }
 
-    private suspend fun recipeIsInWishlist(recipe: Recipe): Boolean{
+    private suspend fun isRecipeInWishlist(recipe: Recipe): Boolean{
         return withContext(Dispatchers.IO){
             try {
                 recipe.title?.let {
@@ -163,18 +135,13 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
     fun remove(position: Int){
         coroutineScope.launch {
             _randomRecipeList.value?.let{
-                var newRecipeList: MutableList<Recipe> = _randomRecipeList.value as MutableList<Recipe>
+                val newRecipeList: MutableList<Recipe> = _randomRecipeList.value as MutableList<Recipe>
                 newRecipeList.removeAt(position)
                 _randomRecipeList.value = newRecipeList
 
                 }
             }
         updateRecipeList()
-    }
-
-
-    fun onClickDontShowThis(){
-        TODO("Implement a 'don't show me this'")
     }
 }
 

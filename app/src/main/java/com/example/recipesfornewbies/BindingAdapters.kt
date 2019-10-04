@@ -17,7 +17,6 @@ import com.example.recipesfornewbies.recipes.Recipe
 import com.example.recipesfornewbies.recipes.SearchResults
 import com.example.recipesfornewbies.recipes.Step
 import com.example.recipesfornewbies.whatsinmyfridge.WhatsInMyFridgeAdapter
-import com.example.recipesfornewbies.wishlistview.WishlistAdapter
 
 
 /**DEFAULT RECIPE LIST FRAGMENT BINDING ADAPTERS**/
@@ -126,15 +125,13 @@ fun capitalizeText(view: TextView, string: String){
 @BindingAdapter("wishlistData", "emptyTextView")
 fun bindWishlistData(recyclerView: RecyclerView, wishlistData: List<Recipe>?, emptyTextView: TextView) {
 
-    Log.i("BindingAdapter", "wishlsitData: $wishlistData")
-    //if(wishlistData.isNullOrEmpty()) {
-
+//    if(wishlistData.isNullOrEmpty()) {
 //        recyclerView.isVisible = false
 //        emptyTextView.isVisible = true
 //    } else {
         recyclerView.isVisible = true
         emptyTextView.isVisible = false
-        val adapter = recyclerView.adapter as WishlistAdapter
+        val adapter = recyclerView.adapter as RandomRecipeListAdapter
         adapter.submitList(wishlistData)
 //    }
 }

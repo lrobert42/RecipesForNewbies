@@ -1,6 +1,9 @@
 package com.example.recipesfornewbies.network
 
-import com.example.recipesfornewbies.recipes.*
+import com.example.recipesfornewbies.recipes.AnalyzedRecipeInstructions
+import com.example.recipesfornewbies.recipes.RandomRecipe
+import com.example.recipesfornewbies.recipes.Recipe
+import com.example.recipesfornewbies.recipes.SearchResults
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -18,13 +21,9 @@ private const val API_KEY = "e7b55905cce641b8bfb8cf86028cdb8e"
 
 private const val apiPhrase = "apiKey=${API_KEY}"
 
-private const val query = "search?query=pasta&number=3&$apiPhrase"
-//private const val query = "random$apiPhrase"
 
 interface RecipesService
 {
-    @GET(query)
-    fun getRecipe(): Deferred<ApiResponse>
 
     @GET("{id}/information?$apiPhrase")
     fun getRecipeById(@Path("id") id: String) : Deferred<Recipe>
@@ -38,7 +37,7 @@ interface RecipesService
     @GET("findByIngredients?")
     fun getRecipesByIngredients(@QueryMap info: Map<String, String>): Deferred<List<SearchResults>>
 
-    @GET("random?$apiPhrase&number=3")
+    @GET("random?$apiPhrase&number=5")
     fun getRandomRecipes() : Deferred<RandomRecipe>
 }
 

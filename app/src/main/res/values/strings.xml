@@ -36,4 +36,8 @@
 
     <string name="about_text">This application has been developed in Kotlin, in order to discover this language and Android programming. \nMade using the Spoonacular API. \nFor any suggestion or bug report,\n please contact me on GitHub, @lrobert42</string>
 
+<!-- ****************** DETAILED RECIPE FRAGMENT ************************ -->
+
+    <string name="add_to_favorite">Add recipe to wishlist</string>
+    <string name="remove_from_favorite">Remove recipe from wishlist</string>
 </resources>
