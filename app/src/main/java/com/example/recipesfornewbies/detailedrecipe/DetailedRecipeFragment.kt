@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,7 +21,6 @@ import kotlinx.coroutines.*
 
 
 class DetailedRecipeFragment: Fragment(){
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,10 +40,8 @@ class DetailedRecipeFragment: Fragment(){
 
         binding.viewModel = viewModel
 
-        activity!!.title = argument.recipe.title
-
+        (activity as AppCompatActivity).supportActionBar?.title= argument.recipe.title
         val adapter = DetailedRecipeAdapter(viewModel)
-//        val manager = LinearLayoutManager(activity)
         val manager = GridLayoutManager(activity, 3)
 
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -68,9 +66,6 @@ class DetailedRecipeFragment: Fragment(){
 
         binding.lifecycleOwner = this
 
-//        viewModel.recipe.observe(this, Observer {detailedRecipe ->
-//            binding.detailedRecipe = detailedRecipe
-//        })
 
         viewModel.navigateTo.observe(this, Observer{
             findNavController().navigate(DetailedRecipeFragmentDirections.actionDetailedRecipeFragmentSelf(it))
@@ -98,9 +93,7 @@ class DetailedRecipeFragment: Fragment(){
 
         menu_detailed_recipe = menu!!
 
-       isRecipeInWishlist(argument.recipe, dataSource )
-
-
+       isRecipeInWishlist(argument.recipe, dataSource)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

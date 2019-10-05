@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -51,7 +52,7 @@ class WhatsInMyFridgeFragment: Fragment() {
         val adapter = WhatsInMyFridgeAdapter(viewModel)
         binding.fridgeListRecyclerView.layoutManager = manager
         binding.fridgeListRecyclerView.adapter = adapter
-        activity!!.setTitle("Explore your fridge")
+        (activity as AppCompatActivity).supportActionBar?.title="Explore your fridge"
 
 
         binding.lifecycleOwner = this
@@ -84,7 +85,6 @@ class WhatsInMyFridgeFragment: Fragment() {
                     viewModel.getNameFromDB(newText)
                     viewModel.suggestion.observe(this@WhatsInMyFridgeFragment, Observer{
                         searchView.suggestionsAdapter = WhatsInMyFridgeSearchAdapter(application, it)
-                        //   adapter.notifyDataSetChanged()
                     })
                 }
                 return true
@@ -109,8 +109,5 @@ class WhatsInMyFridgeFragment: Fragment() {
                 }
             })
         return binding.root
-
-//        TODO("Implement a list that contains items in the fridge")
-//        TODO("Show a list of recipes that only uses items provided")
     }
 }

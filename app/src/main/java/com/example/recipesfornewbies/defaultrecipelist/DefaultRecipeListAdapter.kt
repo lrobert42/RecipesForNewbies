@@ -14,7 +14,6 @@ import com.example.recipesfornewbies.recipes.Recipe
 
 class RandomRecipeListAdapter: ListAdapter<Recipe, RandomRecipeListAdapter.RandomRecipeViewHolder>(DiffCallback) {
 
-
     class RandomRecipeViewHolder(private var binding: RecipeCardViewBinding):
         RecyclerView.ViewHolder(binding.root) {
 
@@ -55,6 +54,7 @@ class RandomRecipeListAdapter: ListAdapter<Recipe, RandomRecipeListAdapter.Rando
 
     override fun onBindViewHolder(holder: RandomRecipeViewHolder, position: Int) {
         val recipe = getItem(position)
+
         holder.bind(recipe)
     }
 

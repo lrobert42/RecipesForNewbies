@@ -17,6 +17,7 @@ import com.example.recipesfornewbies.recipes.Recipe
 import com.example.recipesfornewbies.recipes.SearchResults
 import com.example.recipesfornewbies.recipes.Step
 import com.example.recipesfornewbies.whatsinmyfridge.WhatsInMyFridgeAdapter
+import com.example.recipesfornewbies.wishlistview.WishlistAdapter
 
 
 /**DEFAULT RECIPE LIST FRAGMENT BINDING ADAPTERS**/
@@ -131,7 +132,7 @@ fun bindWishlistData(recyclerView: RecyclerView, wishlistData: List<Recipe>?, em
 //    } else {
         recyclerView.isVisible = true
         emptyTextView.isVisible = false
-        val adapter = recyclerView.adapter as RandomRecipeListAdapter
+        val adapter = recyclerView.adapter as WishlistAdapter
         adapter.submitList(wishlistData)
 //    }
 }

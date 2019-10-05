@@ -1,10 +1,10 @@
 package com.example.recipesfornewbies.wishlistview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -46,10 +46,10 @@ class WishlistFragment: Fragment() {
 
         val adapter = WishlistAdapter()
         binding.wishlistRecyclerView.adapter = adapter
+        (activity as AppCompatActivity).supportActionBar?.title="Your wishlist"
 
 
         viewModel.wishlist.observe(this, Observer {
-            Log.i("Frgament", "$it")
             adapter.submitList(it)
         })
 

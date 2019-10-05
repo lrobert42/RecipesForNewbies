@@ -42,7 +42,6 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
     private fun cleanRandomRecipes(dirtyRecipeList : List<Recipe>){
 
         cleanRecipeList.addAll(dirtyRecipeList.filter{
-            Log.i("VM", "image: ${it.image}")
              it.image != null && it.image.isNotEmpty()
             })
 
@@ -142,6 +141,40 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
                 }
             }
         updateRecipeList()
+    }
+
+    fun searchRecipes(query: String){
+        Log.i("Search", "Entering searchRecipe. Query: $query")
+        coroutineScope.launch {
+            try {
+                val getSearchResults = service.getSearchResults(parseQuery(query)).await().results
+                cleanSearchResults(getSearchResults, query)
+            } catch (e: Exception) {
+                Log.e("ViewModel","Error: $e")
+            }
+        }
+    }
+
+    private fun cleanSearchResults(dirtyRecipeList : List<Recipe>, query: String){
+        Log.i("Search", "Entering CleanSearch. List of dirty: $dirtyRecipeList")
+
+        cleanRecipeList.addAll(dirtyRecipeList.filter{
+            it.image != null && it.image.isNotEmpty()
+        })
+
+        if(cleanRecipeList.size >= 5){
+            _randomRecipeList.value = cleanRecipeList
+        } else
+        {
+            searchRecipes(query)
+        }
+    }
+
+    private fun parseQuery(query: String) : Map<String, String>{
+        return mapOf(
+            "query" to query,
+            "number" to "5",
+            "apiKey" to "e7b55905cce641b8bfb8cf86028cdb8e")
     }
 }
 

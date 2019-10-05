@@ -1,9 +1,6 @@
 package com.example.recipesfornewbies.network
 
-import com.example.recipesfornewbies.recipes.AnalyzedRecipeInstructions
-import com.example.recipesfornewbies.recipes.RandomRecipe
-import com.example.recipesfornewbies.recipes.Recipe
-import com.example.recipesfornewbies.recipes.SearchResults
+import com.example.recipesfornewbies.recipes.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -39,6 +36,9 @@ interface RecipesService
 
     @GET("random?$apiPhrase&number=5")
     fun getRandomRecipes() : Deferred<RandomRecipe>
+
+    @GET("complexSearch?")
+    fun getSearchResults(@QueryMap info: Map<String, String>) : Deferred<ApiResponse>
 }
 
 
@@ -57,9 +57,4 @@ val retrofit = Retrofit.Builder()
 
 val service by lazy{
     retrofit.create(RecipesService::class.java)
-}
-
-fun todo(){
-    TODO("Implement a searchByItem")
-    TODO("Implement searching filters (diet, servings)")
 }
