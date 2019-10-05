@@ -1,0 +1,60 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="ingredient"
+            type="com.example.recipesfornewbies.recipes.ExtendedIngredient"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.recipesfornewbies.groceryList.GroceryListViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/aisle_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{ingredient.aisle}"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Aisle"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/grocery_ingredient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{ingredient.name}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aisle_text_view"
+            tools:text="TOMATOES" />
+
+        <TextView
+            android:id="@+id/grocery_ingredient_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{ingredient.amount.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/grocery_ingredient_name"
+            app:layout_constraintTop_toBottomOf="@id/aisle_text_view"
+            android:textSize="16sp"
+            tools:text="$" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/grocery_checkbox"
+            android:layout_width="25dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/grocery_ingredient_amount"
+            app:layout_constraintTop_toBottomOf="@id/aisle_text_view"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

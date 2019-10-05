@@ -1,5 +1,6 @@
 package com.example.recipesfornewbies
 
+import android.graphics.Paint
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -130,13 +131,21 @@ fun bindWishlistData(recyclerView: RecyclerView, wishlistData: List<Recipe>?, em
 //        recyclerView.isVisible = false
 //        emptyTextView.isVisible = true
 //    } else {
-        recyclerView.isVisible = true
-        emptyTextView.isVisible = false
-        val adapter = recyclerView.adapter as WishlistAdapter
-        adapter.submitList(wishlistData)
+    recyclerView.isVisible = true
+    emptyTextView.isVisible = false
+    val adapter = recyclerView.adapter as WishlistAdapter
+    adapter.submitList(wishlistData)
 //    }
 }
 
+@BindingAdapter("strikeThrough")
+fun strikeThrough(textView: TextView, strikeThrough: Boolean) {
+    if (strikeThrough) {
+        textView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+    } else {
+        textView.paintFlags = 0
+    }
+}
 
 
 ///**OTHER BINDING ADAPTERS **/
