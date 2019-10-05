@@ -97,5 +97,12 @@
         <action
             android:id="@+id/action_WishlistFragment_to_detailedRecipeFragment"
             app:destination="@id/detailedRecipeFragment" />
+        <action
+            android:id="@+id/action_WishlistFragment_to_groceryListFragment"
+            app:destination="@id/groceryListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/groceryListFragment"
+        android:name="com.example.recipesfornewbies.groceryList.GroceryListFragment"
+        android:label="GroceryListFragment" />
 </navigation>

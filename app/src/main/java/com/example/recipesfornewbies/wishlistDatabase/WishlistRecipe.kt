@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.recipesfornewbies.recipes.ExtendedIngredient
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -22,5 +23,9 @@ data class WishlistRecipe(
     var recipe_servings:Int = 0,
 
     @ColumnInfo(name="recipe_ready_in_minutes")
-    var recipe_ready_in_minutes:Int = 0
+    var recipe_ready_in_minutes:Int = 0,
+
+    @ColumnInfo(name="recipe_ingredients_needed")
+    var recipe_ingredients_needed: List<ExtendedIngredient?> = emptyList()
+
 ) : Parcelable

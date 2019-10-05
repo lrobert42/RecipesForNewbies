@@ -26,7 +26,7 @@ data class Recipe(
     val dairyFree: Boolean?,
     val diets: @RawValue List<Any> = emptyList(),
     val dishTypes: List<String?> = emptyList(),
-    val extendedIngredients: List<ExtendedIngredient> = emptyList(),
+    val extendedIngredients: List<ExtendedIngredient?> = emptyList(),
     val gaps: String?,
     val glutenFree: Boolean?,
     val healthScore: Double?,
@@ -96,7 +96,7 @@ data class Recipe(
         winePairing = WinePairing()
     )
 
-    constructor(id: Int, title: String?, image: String?, servings: Int, readyInMinutes: Int) : this(
+    constructor(id: Int, title: String?, image: String?, servings: Int, readyInMinutes: Int, extendedIngredients: List<ExtendedIngredient?>) : this(
         aggregateLikes = 0,
         analyzedInstructions = emptyList(),
         cheap = false,
@@ -106,7 +106,7 @@ data class Recipe(
         dairyFree = false,
         diets = emptyList(),
         dishTypes = emptyList(),
-        extendedIngredients = emptyList(),
+        extendedIngredients = extendedIngredients,
         gaps = "",
         glutenFree = false,
         healthScore = 0.0,

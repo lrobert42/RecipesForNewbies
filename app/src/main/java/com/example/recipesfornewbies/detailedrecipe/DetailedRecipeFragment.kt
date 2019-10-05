@@ -132,7 +132,8 @@ class DetailedRecipeFragment: Fragment(){
                     recipe_title = recipe.title!!,
                     recipe_servings = recipe.servings,
                     recipe_ready_in_minutes = recipe.readyInMinutes,
-                    _id = recipe.id
+                    _id = recipe.id,
+                    recipe_ingredients_needed = recipe.extendedIngredients
                 )
 
                 dataSource.insert(newWishlistRecipe)

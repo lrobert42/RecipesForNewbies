@@ -1,9 +1,7 @@
 package com.example.recipesfornewbies.wishlistview
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -81,6 +79,36 @@ class WishlistFragment: Fragment() {
                 }
             })
         )
+
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.wishlist_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val menuItem = menu!!.findItem(R.id.build_grocery_list)
+        val application = requireNotNull(this.activity).application
+        val dataSource = WishlistDatabase.getInstance(application).wishlistDatabaseDAO
+        val viewModelFactory = WishlistViewModelFactory(dataSource)
+        val viewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory
+            ).get(WishlistViewModel::class.java)
+
+        viewModel.wishlist.observe(this, Observer{
+            menuItem.isVisible = !it.isEmpty()
+        })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item?.itemId){
+            R.id.build_grocery_list ->{
+                this.findNavController().navigate(WishlistFragmentDirections.actionWishlistFragmentToGroceryListFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -77,7 +77,12 @@ class SearchViewModel(args : Array<Ingredients>) : ViewModel() {
     private suspend fun requestRecipeByID(id : Int) : Recipe{
           return withContext(Dispatchers.IO){
                 val getRecipes = service.getRecipeById(id.toString()).await()
-                    val recipeClicked = Recipe(getRecipes.id, getRecipes.title, getRecipes.image, getRecipes.readyInMinutes, getRecipes.servings)
+                    val recipeClicked = Recipe(getRecipes.id,
+                        getRecipes.title,
+                        getRecipes.image,
+                        getRecipes.readyInMinutes,
+                        getRecipes.servings,
+                        getRecipes.extendedIngredients)
 
               recipeClicked
             }

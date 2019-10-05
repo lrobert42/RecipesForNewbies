@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.recipesfornewbies.UtilsClass.ExtendedIngredientsConverters
 
-@Database(entities = [WishlistRecipe::class], version = 1, exportSchema = false)
+@Database(entities = [WishlistRecipe::class], version = 2, exportSchema = false)
+@TypeConverters(ExtendedIngredientsConverters::class)
 abstract class WishlistDatabase : RoomDatabase() {
 
     abstract val wishlistDatabaseDAO: WishlistDatabaseDAO

@@ -45,7 +45,8 @@ class WishlistViewModel(datasource: WishlistDatabaseDAO) : ViewModel(){
                                 title = it.recipe_title,
                                 image = it.recipe_image,
                                 servings = it.recipe_servings,
-                                readyInMinutes = it.recipe_ready_in_minutes
+                                readyInMinutes = it.recipe_ready_in_minutes,
+                                extendedIngredients = it.recipe_ingredients_needed
                             )
                         }
                     }
@@ -53,10 +54,19 @@ class WishlistViewModel(datasource: WishlistDatabaseDAO) : ViewModel(){
                 }
                 catch (e: Exception)
                 {
-                    Log.e("VM", "Error: $e")
+                    Log.e("VM", "Error in getAllRecipes: $e")
                     null
                 }
             }
         }
     }
+    fun onButtonClicked(){
+        coroutineScope.launch{
+            withContext(Dispatchers.IO)
+            {
+                database.clear()
+            }
+        }
+    }
+
 }

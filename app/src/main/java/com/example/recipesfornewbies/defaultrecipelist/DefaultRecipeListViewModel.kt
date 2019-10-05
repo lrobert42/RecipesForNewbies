@@ -13,10 +13,6 @@ import kotlinx.coroutines.*
 
 class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() {
 
-//    private val _recipeList = MutableLiveData<List<Recipe>>()
-//    val recipeList: LiveData<List<Recipe>>
-//    get() = _recipeList
-
     val database = datasource
 
 
@@ -96,7 +92,8 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
                     recipe_image = recipe.image?: "",
                     recipe_ready_in_minutes = recipe.readyInMinutes,
                     recipe_servings = recipe.servings,
-                    recipe_title = recipe.title?: ""
+                    recipe_title = recipe.title?: "",
+                    recipe_ingredients_needed = recipe.extendedIngredients
                 )
             database.insert(newWishlistRecipe)
         }
