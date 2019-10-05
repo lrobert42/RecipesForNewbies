@@ -13,15 +13,11 @@ import retrofit2.http.QueryMap
 
 
 private const val BASE_URL = "https://api.spoonacular.com/recipes/"
-
 private const val API_KEY = "e7b55905cce641b8bfb8cf86028cdb8e"
-
 private const val apiPhrase = "apiKey=${API_KEY}"
-
 
 interface RecipesService
 {
-
     @GET("{id}/information?$apiPhrase")
     fun getRecipeById(@Path("id") id: String) : Deferred<Recipe>
 
@@ -41,9 +37,6 @@ interface RecipesService
     fun getSearchResults(@QueryMap info: Map<String, String>) : Deferred<ApiResponse>
 }
 
-
-
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -53,7 +46,6 @@ val retrofit = Retrofit.Builder()
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
-
 
 val service by lazy{
     retrofit.create(RecipesService::class.java)

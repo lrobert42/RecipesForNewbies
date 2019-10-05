@@ -38,7 +38,6 @@ class GroceryListViewModel(dataSource: WishlistDatabaseDAO) : ViewModel() {
         }
     }
 
-
     private fun ingredientListCreator(wishListRecipes: List<WishlistRecipe?>) : List<ExtendedIngredient?>{
         val ingredientList = mutableListOf<ExtendedIngredient>()
 
@@ -51,15 +50,13 @@ class GroceryListViewModel(dataSource: WishlistDatabaseDAO) : ViewModel() {
                 }
             }
         }
-    ingredientList?.let{
-        it.sortBy {
-            it.aisle
+        ingredientList.let{
+            it.sortBy {
+                it.aisle
+            }
         }
-    }
     return ingredientList
     }
-
-
 
     fun onButtonClicked(){
 

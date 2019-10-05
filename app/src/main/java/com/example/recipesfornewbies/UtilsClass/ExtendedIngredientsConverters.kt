@@ -12,7 +12,6 @@ class ExtendedIngredientsConverters {
 
     val adapter = moshi.adapter<ExtendedIngredient>(ExtendedIngredient::class.java)
 
-
     @TypeConverter
     fun extendedIngredientsToJson(extendedIngredient: List<ExtendedIngredient?>): String {
 
