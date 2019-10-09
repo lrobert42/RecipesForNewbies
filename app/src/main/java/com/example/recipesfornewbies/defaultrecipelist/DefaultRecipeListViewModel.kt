@@ -41,7 +41,7 @@ class DefaultRecipeListViewModel(datasource: WishlistDatabaseDAO) : ViewModel() 
              it.image != null && it.image.isNotEmpty()
             })
 
-        if(cleanRecipeList.size >= 5){
+        if(cleanRecipeList.size >= 3){
             _randomRecipeList.value = cleanRecipeList
         } else
         {

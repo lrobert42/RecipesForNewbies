@@ -30,7 +30,7 @@ interface RecipesService
     @GET("findByIngredients?")
     fun getRecipesByIngredients(@QueryMap info: Map<String, String>): Deferred<List<SearchResults>>
 
-    @GET("random?$apiPhrase&number=5")
+    @GET("random?$apiPhrase&number=3")
     fun getRandomRecipes() : Deferred<RandomRecipe>
 
     @GET("complexSearch?")

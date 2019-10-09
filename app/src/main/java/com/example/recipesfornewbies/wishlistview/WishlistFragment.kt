@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipesfornewbies.R
 import com.example.recipesfornewbies.UtilsClass.RecyclerItemClickListener
-import com.example.recipesfornewbies.UtilsClass.SwipeToDeleteCallback
+import com.example.recipesfornewbies.UtilsClass.SwipeToDelete
 import com.example.recipesfornewbies.databinding.FragmentWishlistBinding
 import com.example.recipesfornewbies.recipes.Recipe
 import com.example.recipesfornewbies.wishlistDatabase.WishlistDatabase
@@ -51,7 +51,7 @@ class WishlistFragment: Fragment() {
             adapter.submitList(it)
         })
 
-        val swipeDelete = object : SwipeToDeleteCallback(application) {
+        val swipeDelete = object : SwipeToDelete(application) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.remove(viewHolder.adapterPosition)
             }

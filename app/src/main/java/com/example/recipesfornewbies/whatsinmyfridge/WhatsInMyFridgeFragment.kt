@@ -91,7 +91,8 @@ class WhatsInMyFridgeFragment: Fragment() {
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                    viewModel.onQuerySubmit(query)
+                viewModel.onQuerySubmit(query.trim())
+                searchView.clearFocus()
                 return true
             }
         })
